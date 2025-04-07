@@ -1,0 +1,13 @@
+pandas
+numpy
+scikit-learn
+xgboost
+flask
+joblib
+requests
+beautifulsoup4
+lxml
+# gunicorn # (用于生产部署)
+# python-dotenv # (如果使用.env文件管理配置)
+# opencv-python # (如果实现图像分析)
+# GeoIP2 # (如果实现区域定价)

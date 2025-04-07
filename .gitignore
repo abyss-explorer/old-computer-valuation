@@ -1,0 +1,44 @@
+# Virtual environment
+venv/
+env/
+*.venv/
+*/venv/
+*/env/
+.env
+
+# Python cache files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# IDE specific files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Operating system files
+.DS_Store
+Thumbs.db
+
+# Data files (如果数据文件很大，不建议直接上传到Git)
+# 可以取消注释下面这行，或者使用 Git LFS (Large File Storage)
+# data/raw_data.csv
+# data/processed_data.csv
+
+# Model files (如果模型文件很大，或者你想每次训练都生成新的)
+# models/*.pkl
+# models/*.joblib
+
+# Logs
+logs/
+*.log
+
+# Secrets (绝对不要上传密钥或密码!)
+*.secrets
+*.env.*local
+
+# Build artifacts
+dist/
+build/
+*.egg-info/
