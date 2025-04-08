@@ -73,9 +73,36 @@
       "description": "苹果 MacBook Pro M1 芯片 8G内存 256G固态硬盘 深空灰 外观完好 电池健康度90%"
     }
     ```
+## 数据采集 (爬虫脚本)
+
+项目包含两个爬虫脚本示例，位于 `scripts/` 目录下，用于尝试收集原始数据。
+
+**重要警告:**
+
+* **目标网站的反爬虫机制非常强大 (如闲鱼、转转)。** 提供的脚本仅为**基础框架和教学示例**，**极大概率无法直接稳定运行**在这些目标网站上。
+* 你需要**深入分析目标网站的 HTML 结构和网络请求** (使用浏览器 F12 开发者工具)，并**大幅修改脚本中的元素定位器 (Selectors) 和页面交互逻辑** (如登录、搜索、滚动、点击下一页等)。
+* `scraper_basic.py` 使用 `requests` 和 `BeautifulSoup`，适用于静态或半静态网站，**基本不适用于现代化的动态网站**。
+* `scraper_selenium.py` 使用 `Selenium` 控制真实浏览器，**更可能**适用于动态网站，但**更复杂、更慢，且更容易被检测和阻止**。你需要安装相应的浏览器驱动 (脚本使用 `webdriver-manager` 尝试自动管理 Chrome 驱动)。
+* **请务必遵守目标网站的 `robots.txt` 文件和用户协议。不负责任的爬取可能导致 IP 被封禁或产生法律风险。后果自负。**
+
+**运行爬虫:**
+
+1.  确保已安装所有依赖 (包括 `requests`, `beautifulsoup4`, `lxml`, `selenium`, `webdriver-manager`)：
+    ```bash
+    pip install -r requirements.txt
+    ```
+2.  **(必需)** 打开 `scripts/` 目录下的爬虫脚本 (`scraper_basic.py` 或 `scraper_selenium.py`)，根据你的目标网站修改其中的 URL、元素定位器 (CSS Selectors) 和页面交互逻辑。检查 `config.py` 中的爬虫相关设置。
+3.  运行脚本：
+    ```bash
+    # 运行基础爬虫 (可能无效)
+    python scripts/scraper_basic.py
+
+    # 运行 Selenium 爬虫 (更可能工作，但需大幅修改)
+    python scripts/scraper_selenium.py
+    ```
+4.  爬取的数据（如果成功）将保存在 `data/` 目录下，文件名为 `basic_scraped_data_...csv` 或 `selenium_scraped_data_...csv`。将需要用于模型训练的数据重命名为 `raw_data.csv` (或在 `config.py` 中修改 `RAW_DATA_PATH`)。
 
 ## 注意事项
 
-* 爬虫脚本未包含在此核心项目中，需另行开发并遵守相关规定。
 * 模型性能依赖于数据质量和特征工程。
 * 配置文件 (`config.py`) 用于管理路径和参数，增强灵活性。
